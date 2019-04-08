@@ -16,18 +16,17 @@ import SingleEntryPlugin from 'webpack/lib/SingleEntryPlugin';
 import WebWorkerTemplatePlugin from 'webpack/lib/webworker/WebWorkerTemplatePlugin';
 
 import getWorker from './workers/';
-import WorkerLoaderError from './Error';
 
 export default function loader() {}
 
 export function pitch(request) {
   const options = loaderUtils.getOptions(this) || {};
 
-  validateOptions({ name: 'Worker Loader', schema, target: options });
+  validateOptions({ name: 'Worker File Loader', schema, target: options });
 
   if (!this.webpack) {
-    throw new WorkerLoaderError({
-      name: 'Worker Loader',
+    throw new Error({
+      name: 'Worker File Loader',
       message: 'This loader is only usable with webpack',
     });
   }
@@ -83,7 +82,7 @@ export function pitch(request) {
   };
 
   if (worker.compiler.hooks) {
-    const plugin = { name: 'WorkerLoader' };
+    const plugin = { name: 'WorkerFileLoader' };
 
     worker.compiler.hooks.compilation.tap(plugin, worker.compilation);
   } else {

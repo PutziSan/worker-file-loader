@@ -31,7 +31,7 @@ $ npm install worker-loader --save-dev
 
 ```js
 // App.js
-import Worker from 'worker-loader!./Worker.js';
+import Worker from 'worker-file-loader!./Worker.js';
 ```
 
 ### Config
@@ -43,7 +43,7 @@ import Worker from 'worker-loader!./Worker.js';
     rules: [
       {
         test: /\.worker\.js$/,
-        use: { loader: 'worker-loader' }
+        use: { loader: 'worker-file-loader' }
       }
     ]
   }
@@ -76,35 +76,8 @@ Require a fallback for non-worker supporting environments
 ```js
 // webpack.config.js
 {
-  loader: 'worker-loader'
+  loader: 'worker-file-loader'
   options: { fallback: false }
-}
-```
-
-### `inline`
-
-Type: `Boolean`
-Default: `false`
-
-You can also inline the worker as a BLOB with the `inline` parameter
-
-```js
-// webpack.config.js
-{
-  loader: 'worker-loader',
-  options: { inline: true }
-}
-```
-
-_Note: Inline mode will also create chunks for browsers without support for
-inline workers, to disable this behavior just set `fallback` parameter as
-`false`._
-
-```js
-// webpack.config.js
-{
-  loader: 'worker-loader'
-  options: { inline: true, fallback: false }
 }
 ```
 
@@ -120,7 +93,7 @@ hash for caching purposes. When using `name` alone `[hash]` is omitted.
 ```js
 // webpack.config.js
 {
-  loader: 'worker-loader',
+  loader: 'worker-file-loader',
   options: { name: 'WorkerName.[hash].js' }
 }
 ```
@@ -136,7 +109,7 @@ the same public path used for other webpack assets is used.
 ```js
 // webpack.config.js
 {
-  loader: 'worker-loader'
+  loader: 'worker-file-loader'
   options: { publicPath: '/scripts/workers/' }
 }
 ```
@@ -229,20 +202,7 @@ commonly occur if you are hosting your assets under a CDN domain. Even downloads
 from the `webpack-dev-server` could be blocked. There are two workarounds:
 
 Firstly, you can inline the worker as a blob instead of downloading it as an
-external script via the [`inline`](#inline) parameter
-
-```js
-// App.js
-import Worker from './file.worker.js';
-```
-
-```js
-// webpack.config.js
-{
-  loader: 'worker-loader'
-  options: { inline: true }
-}
-```
+external script via the [`inline`](#inline) parameter (**this option is removed for this loader**)
 
 Secondly, you may override the base download URL for your worker script via the
 [`publicPath`](#publicpath) option
@@ -256,7 +216,7 @@ import Worker from './file.worker.js';
 ```js
 // webpack.config.js
 {
-  loader: 'worker-loader'
+  loader: 'worker-file-loader'
   options: { publicPath: '/workers/' }
 }
 ```
