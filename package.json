@@ -1,6 +1,6 @@
 {
   "name": "worker-file-loader",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "worker loader module for webpack",
   "license": "MIT",
   "repository": "PutziSan/worker-file-loader",
