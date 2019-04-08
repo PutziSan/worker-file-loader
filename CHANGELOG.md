@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/PutziSan/worker-file-loader/compare/v1.1.1...v2.0.1) (2019-04-08)
+
+
+### Bug Fixes
+
+* **package:** homepage URL typo ([#130](https://github.com/PutziSan/worker-file-loader/issues/130)) ([ceabf74](https://github.com/PutziSan/worker-file-loader/commit/ceabf74))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/webpack-contrib/worker-loader/compare/v1.1.0...v1.1.1) (2018-02-25)
 
