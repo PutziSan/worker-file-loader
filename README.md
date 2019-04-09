@@ -15,6 +15,8 @@
 
 worker loader module for webpack
 
+> this module is forked from [worker-loader](https://github.com/webpack-contrib/worker-loader) and customized so that the url of the created worker is returned to create service-workers or workers with the url.
+
 ## Requirements
 
 This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
@@ -71,9 +73,9 @@ import Worker from 'worker-file-loader!./Worker.js';
 
 ```js
 // App.js
-import Worker from './file.worker.js';
+import workerUrl from './file.worker.js';
 
-const worker = new Worker();
+const worker = new Worker(workerUrl);
 
 worker.postMessage({ a: 1 });
 worker.onmessage = function(event) {};
@@ -183,11 +185,9 @@ To integrate with TypeScript, you will need to define a custom module for the ex
 ```typescript
 // typings/custom.d.ts
 declare module 'worker-file-loader!*' {
-  class WebpackWorker extends Worker {
-    constructor();
-  }
+  const url: string;
 
-  export default WebpackWorker;
+  export default url;
 }
 ```
 
@@ -204,9 +204,9 @@ ctx.addEventListener('message', (event) => console.log(event));
 
 ```typescript
 // App.ts
-import Worker from 'worker-file-loader!./Worker';
+import workerUrl from 'worker-file-loader!./Worker';
 
-const worker = new Worker();
+const worker = new Worker(workerUrl);
 
 worker.postMessage({ a: 1 });
 worker.onmessage = (event) => {};
@@ -232,8 +232,8 @@ Secondly, you may override the base download URL for your worker script via the
 
 ```js
 // App.js
-// This will cause the worker to be downloaded from `/workers/file.worker.js`
-import Worker from './file.worker.js';
+// This will result in `/workers/file.worker.js`
+import workerUrl from './file.worker.js';
 ```
 
 ```js
