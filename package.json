@@ -78,7 +78,6 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": [
       "eslint --fix",

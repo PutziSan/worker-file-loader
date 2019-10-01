@@ -31,7 +31,8 @@ export function pitch(request) {
     });
   }
 
-  this.cacheable(false);
+  // fix hot-update for worker-loader 1:
+  // this.cacheable(false);
 
   const cb = this.async();
 
@@ -72,6 +73,9 @@ export function pitch(request) {
   const subCache = `subcache ${__dirname} ${request}`;
 
   worker.compilation = (compilation) => {
+    // fix hot-update for worker-loader 2:
+    compilation.hotUpdateChunkTemplate = false;
+
     if (compilation.cache) {
       if (!compilation.cache[subCache]) {
         compilation.cache[subCache] = {};
